@@ -1,0 +1,11 @@
+.vscode/
+.idea/
+*.log
+*.tmp
+*.bak
+node_modules/
+dist/
+build/
+yarn-error.log
+.DS_Store
+.env
