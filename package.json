@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon src/app.js",
-    "migrate": "psql -U postgres -d backend_test -f migrations/init.sql",
+    "migrate": "psql -U postgres -d backend_tes -f migrations/init.sql",
     "seed": "node seeders/run-seed.js"
   },
   "keywords": [],
