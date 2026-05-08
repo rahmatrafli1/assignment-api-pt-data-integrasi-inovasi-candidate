@@ -403,34 +403,34 @@ Get data user yang sedang login.
 
 ```mermaid
 flowchart TD
-    A([🔐 User Input\nUsername & Password]) --> B[POST /api/auth/login]
+    A([User Input\nUsername & Password]) --> B[POST /api/auth/login]
 
-    B --> C{Validasi\nCredential}
+    B --> C{Validasi Credential}
 
-    C -->|❌ Gagal| D([⛔ Response 401\nInvalid username or password])
+    C -->|Gagal| D([Response 401\nInvalid username or password])
 
-    C -->|✅ Berhasil| E{Jumlah\nRole?}
+    C -->|Berhasil| E{Jumlah Role?}
 
-    E -->|1 Role| F([✅ Response 200\nLangsung dapat JWT Token])
+    E -->|1 Role| F([Response 200\nLangsung dapat JWT Token])
 
-    E -->|> 1 Role| G([⚠️ Response 200\nDapat temp_token +\nDaftar Role])
+    E -->|Lebih dari 1 Role| G([Response 200\nDapat temp_token + Daftar Role])
 
     G --> H[User Pilih Role]
 
     H --> I[POST /api/auth/select-role\ndengan temp_token]
 
-    I --> J{Validasi\nRole}
+    I --> J{Validasi Role}
 
-    J -->|❌ Role tidak valid| K([⛔ Response 403\nRole not assigned to user])
+    J -->|Role tidak valid| K([Response 403\nRole not assigned to user])
 
-    J -->|✅ Valid| L([✅ Response 200\nDapat final JWT Token])
+    J -->|Valid| L([Response 200\nDapat final JWT Token])
 
     F --> M[Gunakan Token di Header\nAuthorization: Bearer token]
     L --> M
 
     M --> N[GET /api/menus/my-menus]
 
-    N --> O([📋 Menu sesuai Role\nyang dipilih])
+    N --> O([Menu sesuai Role yang dipilih])
 
     style A fill:#4A90D9,color:#fff
     style D fill:#E74C3C,color:#fff
